@@ -1,2 +1,6 @@
+import "./components/Card";
+import "./components/CardList";
+
 import { cards } from "../dist/cards.json";
-console.log(cards);
+
+window.dispatchEvent(new CustomEvent("cards", { detail: cards }));
