@@ -1,0 +1,19 @@
+{
+  "name": "nida-birthday22",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo building"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luckydye/nida-birthday22.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luckydye/nida-birthday22/issues"
+  },
+  "homepage": "https://github.com/luckydye/nida-birthday22#readme"
+}
