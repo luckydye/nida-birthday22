@@ -91,9 +91,10 @@ export async function fetchPage() {
 
   await Promise.all(
     records.map((rec) =>
-      parseCard(rec).then(() => {
+      parseCard(rec).then((card) => {
         progress++;
         console.log(`[SSG] fetched data ${progress}/${totalCards}`);
+        return card;
       })
     )
   ).then((cards) => {
