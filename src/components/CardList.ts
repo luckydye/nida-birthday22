@@ -4,18 +4,8 @@ import "@atrium-ui/lazyimage";
 
 @customElement("nida-cardlist")
 export class CardList extends LitElement {
-  static get styles() {
-    return css`
-      :host {
-        display: block;
-        font-size: 1.5rem;
-      }
-      .grid {
-        display: grid;
-        grid-gap: 20px;
-        grid-template-columns: 1fr 1fr 1fr;
-      }
-    `;
+  protected createRenderRoot(): Element | ShadowRoot {
+    return this;
   }
 
   cards = [];
@@ -32,28 +22,38 @@ export class CardList extends LitElement {
     super.connectedCallback();
   }
 
+  renderMedia(media) {
+    switch (media.type) {
+      case "image/jpeg":
+        return html`
+          <aui-lazyimage width="200px" src="${media.src}"></aui-lazyimage>
+        `;
+      case "image/png":
+        return html`
+          <aui-lazyimage width="200px" src="${media.src}"></aui-lazyimage>
+        `;
+    }
+  }
+
   render() {
     return html`
       <div class="grid">
         ${this.cards.map((card) => {
           return html`
             <nida-card>
-              <div>
+              <div class="message">
                 <p>${card.message}</p>
               </div>
 
               ${card.media
                 ? html`
-                    <div>
-                      <aui-lazyimage
-                        width="200px"
-                        src="${card.media}"
-                      ></aui-lazyimage>
-                    </div>
+                    <div class="media">${this.renderMedia(card.media)}</div>
                   `
                 : ""}
 
-              <span>${card.name}</span>
+              <div class="name">
+                <span>${card.name}</span>
+              </div>
             </nida-card>
           `;
         })}

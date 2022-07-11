@@ -1,0 +1,26 @@
+nida-card {
+  display: block;
+  font-size: 1rem;
+}
+.grid {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+nida-card .message {
+  color: #333;
+  text-align: left;
+  font-size: 1.2rem;
+}
+nida-card .media {
+}
+nida-card .name {
+  text-align: left;
+  margin-top: 20px;
+}
+
+aui-lazyimage {
+  overflow: hidden;
+  border-radius: 3px;
+  display: block;
+}

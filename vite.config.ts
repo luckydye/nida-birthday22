@@ -1,9 +1,17 @@
 import { defineConfig } from "vite";
 
-export default defineConfig({
-  base: "./",
-  publicDir: "static",
-  build: {
-    emptyOutDir: false,
-  },
+import { fetchPage } from "./prerender";
+
+export default defineConfig(async ({ command, mode }) => {
+  if (command === "build") {
+    await fetchPage();
+  }
+
+  return {
+    base: "./",
+    publicDir: "static",
+    build: {
+      emptyOutDir: false,
+    },
+  };
 });

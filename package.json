@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "vite",
-    "build": "node prerender.mjs && vite build"
+    "dev": "npm run build && vite",
+    "build": "vite build"
   },
   "repository": {
     "type": "git",
