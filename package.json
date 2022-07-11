@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "echo building"
+    "build": "vite build"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/luckydye/nida-birthday22/issues"
   },
-  "homepage": "https://github.com/luckydye/nida-birthday22#readme"
+  "homepage": "https://github.com/luckydye/nida-birthday22#readme",
+  "dependencies": {
+    "vite": "^2.9.14"
+  }
 }
