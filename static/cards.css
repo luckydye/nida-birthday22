@@ -4,15 +4,36 @@ nida-card {
 }
 .grid {
   display: grid;
-  grid-gap: 20px;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 40px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+@media (max-width: 1240px) {
+  .grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media (max-width: 940px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 540px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }
 nida-card .message {
   color: #333;
   text-align: left;
   font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+nida-card .message p {
+  white-space: pre-wrap;
 }
 nida-card .media {
+  margin-left: -20px;
+  margin-right: -20px;
 }
 nida-card .name {
   text-align: right;
@@ -20,7 +41,5 @@ nida-card .name {
 }
 
 aui-lazyimage {
-  overflow: hidden;
-  border-radius: 3px;
   display: block;
 }
