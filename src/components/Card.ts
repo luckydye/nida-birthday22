@@ -7,10 +7,13 @@ export class Card extends LitElement {
     return css`
       :host {
         display: block;
+        transform-origin: 50% 20px;
+        transform: rotate(var(--rot, 2deg));
       }
       .wrapper {
         padding: 20px;
         border-radius: 6px;
+        box-shadow: #0000000a 2px 4px 12px;
         overflow: hidden;
         background: white;
       }
@@ -23,6 +26,8 @@ export class Card extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
+
+    this.style.setProperty("--rot", `${(Math.random() - 0.5) * 2}deg`);
   }
 
   render() {
