@@ -86,7 +86,17 @@ export async function fetchPage() {
     fs.mkdirSync("dist/media");
   }
 
-  await Promise.all(records.map(parseCard)).then((cards) => {
+  const totalCards = records.length;
+  let progress = 0;
+
+  await Promise.all(
+    records.map((rec) =>
+      parseCard(rec).then(() => {
+        progress++;
+        console.log(`[SSG] fetched data ${progress}/${totalCards}`);
+      })
+    )
+  ).then((cards) => {
     const data = {
       cards,
     };
