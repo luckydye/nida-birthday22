@@ -1,5 +1,21 @@
 import { css, html, LitElement } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { customElement } from "lit/decorators.js";
+
+let callback = (entries, observer) => {
+  let i = 0;
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.setAttribute("shown", "");
+      }, i * 100);
+      i++;
+    }
+  });
+};
+
+const observer = new IntersectionObserver(callback, {
+  rootMargin: "-100px",
+});
 
 @customElement("nida-card")
 export class Card extends LitElement {
@@ -8,7 +24,14 @@ export class Card extends LitElement {
       :host {
         display: block;
         transform-origin: 50% 20px;
-        transform: rotate(var(--rot, 2deg));
+        opacity: 0;
+        transition: opacity 0.5s ease 0s,
+          transform 0.5s cubic-bezier(0.26, 0.3, 0, 0.98) 0s;
+        transform: translate(0, 60px);
+      }
+      :host([shown]) {
+        opacity: 1;
+        transform: rotate(var(--rot, 2deg)) translate(0, 0px);
       }
       .wrapper {
         padding: 20px;
@@ -27,7 +50,8 @@ export class Card extends LitElement {
   connectedCallback() {
     super.connectedCallback();
 
-    this.style.setProperty("--rot", `${(Math.random() - 0.5) * 2}deg`);
+    this.style.setProperty("--rot", `${(Math.random() - 0.5) * 4}deg`);
+    observer.observe(this);
   }
 
   render() {

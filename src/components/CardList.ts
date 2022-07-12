@@ -15,6 +15,7 @@ export class CardList extends LitElement {
 
     window.addEventListener("cards", ((ev: CustomEvent) => {
       this.cards = ev.detail;
+      this.requestUpdate();
     }) as EventListener);
   }
 
@@ -35,26 +36,42 @@ export class CardList extends LitElement {
     }
   }
 
+  renderCard(card) {
+    return html`
+      <nida-card>
+        <div class="message">
+          <p>${card.message}</p>
+        </div>
+
+        ${card.media
+          ? html` <div class="media">${this.renderMedia(card.media)}</div> `
+          : ""}
+
+        <div class="name">
+          <span>${card.name}</span>
+        </div>
+      </nida-card>
+    `;
+  }
+
   render() {
+    const columns: [][] = [];
+
+    let i = 0;
+    for (let card of this.cards) {
+      const column = Math.floor(i / 4);
+      columns[column] = columns[column] || [];
+      columns[column].push(card);
+      i++;
+    }
+
     return html`
       <div class="grid">
-        ${this.cards.map((card) => {
+        ${columns.map((col) => {
           return html`
-            <nida-card>
-              <div class="message">
-                <p>${card.message}</p>
-              </div>
-
-              ${card.media
-                ? html`
-                    <div class="media">${this.renderMedia(card.media)}</div>
-                  `
-                : ""}
-
-              <div class="name">
-                <span>${card.name}</span>
-              </div>
-            </nida-card>
+            <div class="column">
+              ${col.map((card) => this.renderCard(card))}
+            </div>
           `;
         })}
       </div>

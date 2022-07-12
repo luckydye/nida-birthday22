@@ -25,6 +25,7 @@ function getImageId(link) {
 }
 
 async function fetchImage(url) {
+  if (!url) return null;
   const imageId = getImageId(url);
   const image = await fetch(`https://lh3.googleusercontent.com/d/${imageId}`);
   const type = image.headers.get("content-type").split("/");
@@ -52,6 +53,13 @@ async function parseCard(record) {
 export async function fetchPage() {
   console.log("[SSG] Fetching content for page '/'");
 
+  if (!fs.existsSync("dist")) {
+    fs.mkdirSync("dist");
+  }
+  if (!fs.existsSync("dist/media")) {
+    fs.mkdirSync("dist/media");
+  }
+
   await fetchCSV();
 
   const csv = fs.readFileSync("dist/data.csv");
@@ -78,13 +86,6 @@ export async function fetchPage() {
 
   parser.write(csvString);
   parser.end();
-
-  if (!fs.existsSync("dist")) {
-    fs.mkdirSync("dist");
-  }
-  if (!fs.existsSync("dist/media")) {
-    fs.mkdirSync("dist/media");
-  }
 
   const totalCards = records.length;
   let progress = 0;

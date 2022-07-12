@@ -3,16 +3,21 @@ html {
 }
 body {
   margin: 0;
+  padding: 40px;
+  box-sizing: border-box;
   width: 100%;
   background: linear-gradient(#f7fcfa, #cbccc6);
   font-family: "Roboto Condensed", sans-serif;
   overscroll-behavior: none;
-  transform: perspective(100vw) rotateX(1deg) scale(0.95);
-  overflow-x: hidden;
-
-  background-image: url(./background.jpeg);
-  background-size: 100%;
-  background-repeat: no-repeat;
+  transition: opacity 1s ease;
+}
+body[loading] {
+  opacity: 0;
+}
+.page {
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 8px;
 }
 main {
   margin: auto;
@@ -31,14 +36,38 @@ p {
   margin: 0;
 }
 header {
-  padding: 80px 0 60px 0;
+  padding: 0;
+  position: relative;
 }
-footer {
+.stage-background {
+  background: #e2e5e1;
+  margin-bottom: -40px;
+}
+.stage-content {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  min-height: 200px;
 }
 .container {
   margin: auto;
   max-width: 1400px;
   padding: 0 60px;
+}
+.stage-caption {
+  margin-top: 100px;
+  margin-left: 100px;
+  padding: 40px;
+  max-width: 900px;
+}
+.scroll-indicator {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+}
+footer {
+  width: 100%;
+  min-height: 100px;
 }

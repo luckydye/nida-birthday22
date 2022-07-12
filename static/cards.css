@@ -1,17 +1,7 @@
-nida-card {
-  display: block;
-  font-size: 1rem;
-  font-family: sans-serif;
-}
 .grid {
   display: grid;
   grid-gap: 40px;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-}
-@media (max-width: 1240px) {
-  .grid {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
+  grid-template-columns: 1fr 1fr 1fr;
 }
 @media (max-width: 940px) {
   .grid {
@@ -22,6 +12,13 @@ nida-card {
   .grid {
     grid-template-columns: 1fr;
   }
+}
+
+nida-card {
+  display: block;
+  font-size: 1rem;
+  font-family: sans-serif;
+  margin-bottom: 40px;
 }
 nida-card .message {
   color: #333;
