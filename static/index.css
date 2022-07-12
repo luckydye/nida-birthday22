@@ -9,6 +9,10 @@ body {
   overscroll-behavior: none;
   transform: perspective(100vw) rotateX(1deg) scale(0.95);
   overflow-x: hidden;
+
+  background-image: url(./background.jpeg);
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 main {
   margin: auto;
