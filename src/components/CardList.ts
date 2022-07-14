@@ -10,13 +10,21 @@ export class CardList extends LitElement {
 
   cards = [];
 
+  init = false;
+
   constructor() {
     super();
 
     window.addEventListener("cards", ((ev: CustomEvent) => {
       this.cards = ev.detail;
-      this.requestUpdate();
     }) as EventListener);
+
+    window.addEventListener("scroll", () => {
+      if (!this.init && this.cards.length > 0) {
+        this.init = true;
+        this.requestUpdate();
+      }
+    });
   }
 
   connectedCallback() {
