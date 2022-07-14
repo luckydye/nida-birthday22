@@ -10,7 +10,8 @@ window.addEventListener("load", () => {
 });
 
 const updateScroll = () => {
-  document.body.style.setProperty("--scrollY", window.scrollY.toString());
+  const v = Math.floor(window.scrollY / 20);
+  document.body.style.setProperty("--scrollY", v.toString());
 };
 
 window.addEventListener("scroll", updateScroll);
