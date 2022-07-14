@@ -1,10 +1,11 @@
 import fs from "node:fs";
-import path from "node:path";
 import { parse } from "csv-parse";
 
 async function fetchCSV() {
   const dbID = "12xrdWnC6YPo3bXyjJ0UPtGrDUu8Ms8oXb_Qd_S1XAX8";
-  const sheet = "responses";
+  const sheet = process.env.NODE_ENV === "production" ? "responses" : "debug";
+  console.log("[SSG] fetching from " + sheet);
+
   const csvURL = `https://docs.google.com/spreadsheets/d/${dbID}/gviz/tq?tqx=out:csv&sheet=${sheet}`;
   const data = await fetch(csvURL).then((res) => {
     if (res.status !== 200) throw new Error("Failed to fetch data");
@@ -35,8 +36,14 @@ async function fetchImage(url) {
     `dist/media/${file}`,
     new Uint8Array(await image.arrayBuffer())
   );
+
+  let src = `dist/media/${file}`;
+  if (process.env.NODE_ENV === "production") {
+    src = `media/${file}`;
+  }
+
   return {
-    src: `media/${file}`,
+    src,
     type: type.join("/"),
   };
 }

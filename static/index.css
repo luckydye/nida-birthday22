@@ -61,9 +61,11 @@ header {
   z-index: 1;
 }
 .stage-caption {
-  padding: 3% 80px;
+  padding: 3% 100px;
   margin: auto;
   max-width: 1200px;
+  background: url(./images/decoration_1.png) no-repeat;
+  background-position: -20px 30px;
 }
 .stage-caption h1 {
   color: #fff;
