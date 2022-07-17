@@ -1,12 +1,7 @@
 import { actions } from "./../actions";
 import { css, html, LitElement } from "lit";
 import { customElement } from "lit/decorators.js";
-
-const messages = [
-  "Hey Nida :)",
-  "bla bla",
-  "blub blub blub blub blub blub blub blub blub blub ",
-];
+import { messages } from "../introMessages";
 
 @customElement("nida-intro")
 export class NidaIntro extends LitElement {

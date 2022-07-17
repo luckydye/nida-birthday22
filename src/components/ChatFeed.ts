@@ -1,4 +1,4 @@
-import { messageTemplates } from "./../randomMessages";
+import { messageTemplates } from "../chatMessages";
 import { css, html, LitElement } from "lit";
 import { customElement } from "lit/decorators.js";
 
