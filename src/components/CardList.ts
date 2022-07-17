@@ -48,7 +48,7 @@ export class CardList extends LitElement {
     return html`
       <nida-card>
         <div class="message">
-          <p>${card.message}</p>
+          <nida-message>${card.message}</nida-message>
         </div>
 
         ${card.media

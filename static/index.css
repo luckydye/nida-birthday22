@@ -3,7 +3,7 @@ html {
 }
 body {
   margin: 0;
-  padding: 40px;
+  padding: 40px 40px 0 40px;
   box-sizing: border-box;
   width: 100%;
   background: linear-gradient(#f7fcfa, #cbccc6);
@@ -21,10 +21,12 @@ body[loading] {
   box-sizing: border-box;
   overflow: hidden;
   border-radius: 8px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
 main {
   margin: auto;
-  min-height: 100%;
+  min-height: 100vh;
 }
 h1 {
   font-size: 4rem;
@@ -42,10 +44,19 @@ header {
   padding: 0;
   position: relative;
   min-width: 1100px;
+  z-index: 0;
 }
 .stage-background {
   background: #e2e5e1;
   margin-bottom: -40px;
+}
+.stage-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.1;
+  z-index: 100;
+  pointer-events: none;
 }
 .stage-content {
   position: absolute;
@@ -90,7 +101,7 @@ strong {
   animation: bounce 2s ease infinite both;
   animation-delay: 3s;
 }
-body:not([style="--scrollY:0;"]) .scroll-indicator {
+body:not([at-top]) .scroll-indicator {
   opacity: 0;
 }
 @keyframes bounce {
@@ -111,4 +122,9 @@ body:not([style="--scrollY:0;"]) .scroll-indicator {
 footer {
   width: 100%;
   min-height: 100px;
+  opacity: 0.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px 0;
 }

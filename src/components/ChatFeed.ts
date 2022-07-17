@@ -1,15 +1,6 @@
+import { messageTemplates } from "./../randomMessages";
 import { css, html, LitElement } from "lit";
 import { customElement } from "lit/decorators.js";
-
-const messageTemplates = () => {
-  return [
-    `<img src="./images/hype.png"><img src="./images/hype.png"><img src="./images/hype.png"><img src="./images/hype.png">`,
-    `Random message with letters`,
-    `Another message`,
-    `<img src="./images/hype.png"><img src="./images/hype.png">`,
-    `<img src="./images/hype.png"><img src="./images/hype.png"><img src="./images/hype.png"><img src="./images/hype.png"><img src="./images/hype.png">`,
-  ];
-};
 
 @customElement("nida-chat")
 export class ChatFeed extends LitElement {
@@ -46,12 +37,12 @@ export class ChatFeed extends LitElement {
     super.connectedCallback();
 
     const tick = () => {
-      const templates = messageTemplates();
+      const templates = messageTemplates;
 
       const nextMessage =
         templates[Math.floor(templates.length * Math.random())];
       const msgs = this.shadowRoot?.querySelector(".messages");
-      const msg = document.createElement("div");
+      const msg = document.createElement("nida-message");
       msg.className = "message";
       msg.innerHTML = nextMessage;
       msgs?.append(msg);

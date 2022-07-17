@@ -6,7 +6,7 @@ let callback = (entries, observer) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
       setTimeout(() => {
-        entry.target.setAttribute("shown", "");
+        entry.target.show();
       }, i * 100);
       i++;
     }
@@ -34,7 +34,7 @@ export class Card extends LitElement {
         transform: rotate(var(--rot, 2deg)) translate(0, 0px);
       }
       .wrapper {
-        padding: 20px;
+        padding: 30px 20px;
         border-radius: 6px;
         box-shadow: #0000000a 2px 4px 12px;
         overflow: hidden;
@@ -43,14 +43,15 @@ export class Card extends LitElement {
     `;
   }
 
-  constructor() {
-    super();
+  show() {
+    this.setAttribute("shown", "");
   }
 
   connectedCallback() {
     super.connectedCallback();
 
     this.style.setProperty("--rot", `${(Math.random() - 0.5) * 4}deg`);
+
     observer.observe(this);
   }
 

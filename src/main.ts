@@ -11,7 +11,11 @@ window.addEventListener("load", () => {
 
 const updateScroll = () => {
   const v = Math.floor(window.scrollY / 20);
-  document.body.style.setProperty("--scrollY", v.toString());
+  if (v > 0) {
+    document.body.removeAttribute("at-top");
+  } else {
+    document.body.setAttribute("at-top", "");
+  }
 };
 
 window.addEventListener("scroll", updateScroll);
