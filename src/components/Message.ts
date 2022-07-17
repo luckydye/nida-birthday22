@@ -1,5 +1,6 @@
-import { css, html, LitElement, TemplateResult } from "lit";
+import { css, html, LitElement } from "lit";
 import { customElement } from "lit/decorators.js";
+import { unsafeHTML } from "lit/directives/unsafe-html.js";
 import { wordReplaceMap } from "../wordReplaceMap";
 
 @customElement("nida-message")
@@ -38,7 +39,9 @@ export class NidaMessage extends LitElement {
   content: Array<string | TemplateResult> = [];
 
   onContentChange() {
-    const data = this.innerText;
+    const text = [...this.childNodes].find((node) => node.nodeName === "#text");
+    const data = text?.data;
+
     const words = data.split(" ");
     const content: string[] = [];
 
