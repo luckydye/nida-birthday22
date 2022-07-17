@@ -15,7 +15,7 @@ export class ChatFeed extends LitElement {
       }
       .message {
         margin-top: 8px;
-        animation: slide-up 0.2s ease-out;
+        animation: slide-up 0.2s ease;
       }
       @keyframes slide-up {
         from {
@@ -36,12 +36,11 @@ export class ChatFeed extends LitElement {
   connectedCallback() {
     super.connectedCallback();
 
-    const tick = () => {
+    const nextMessage = () => {
       const templates = messageTemplates;
 
       const nextMessage =
         templates[Math.floor(templates.length * Math.random())];
-      const msgs = this.shadowRoot?.querySelector(".messages");
       const msg = document.createElement("nida-message");
       msg.className = "message";
       msg.innerHTML = nextMessage;
@@ -51,10 +50,19 @@ export class ChatFeed extends LitElement {
       if (this.messages.length > 5) {
         this.messages.shift();
       }
+    };
+
+    nextMessage();
+    nextMessage();
+    nextMessage();
+    nextMessage();
+
+    const tick = () => {
+      nextMessage();
 
       this.requestUpdate();
 
-      setTimeout(() => tick(), 1000 * Math.random() + 1000 * 2);
+      setTimeout(() => tick(), 750 * Math.random() + 500 * 1.5);
     };
     tick();
   }
