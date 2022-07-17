@@ -19,9 +19,11 @@ export class ChatFeed extends LitElement {
       }
       @keyframes slide-up {
         from {
-          opacity: 0;
-          transform: translate(0, 10px);
+          transform: translate(0, 20px);
         }
+      }
+      .messages {
+        overflow: hidden;
       }
       img {
         width: 32px;
@@ -29,9 +31,7 @@ export class ChatFeed extends LitElement {
     `;
   }
 
-  constructor() {
-    super();
-  }
+  messages = [];
 
   connectedCallback() {
     super.connectedCallback();
@@ -45,11 +45,14 @@ export class ChatFeed extends LitElement {
       const msg = document.createElement("nida-message");
       msg.className = "message";
       msg.innerHTML = nextMessage;
-      msgs?.append(msg);
 
-      if (msgs?.children.length > 5) {
-        msgs?.children[0].remove();
+      this.messages.push(msg);
+
+      if (this.messages.length > 5) {
+        this.messages.shift();
       }
+
+      this.requestUpdate();
 
       setTimeout(() => tick(), 1000 * Math.random() + 1000 * 2);
     };
@@ -59,7 +62,7 @@ export class ChatFeed extends LitElement {
   render() {
     return html`
       <div class="wrapper">
-        <div class="messages"></div>
+        <div class="messages">${this.messages}</div>
       </div>
     `;
   }
