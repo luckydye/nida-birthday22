@@ -11,6 +11,7 @@ export class NidaMessage extends LitElement {
         text-align: left;
         font-size: 1rem;
         color: #333;
+        margin: 4px 0;
       }
 
       p {

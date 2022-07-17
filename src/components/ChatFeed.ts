@@ -14,7 +14,7 @@ export class ChatFeed extends LitElement {
         color: white;
       }
       .message {
-        margin-top: 3px;
+        margin-top: 8px;
         animation: slide-up 0.2s ease-out;
       }
       @keyframes slide-up {

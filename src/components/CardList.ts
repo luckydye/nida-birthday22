@@ -12,23 +12,25 @@ export class CardList extends LitElement {
 
   init = false;
 
-  constructor() {
-    super();
+  connectedCallback() {
+    super.connectedCallback();
 
     window.addEventListener("cards", ((ev: CustomEvent) => {
       this.cards = ev.detail;
     }) as EventListener);
 
-    window.addEventListener("scroll", () => {
-      if (!this.init && this.cards.length > 0) {
-        this.init = true;
-        this.requestUpdate();
-      }
-    });
-  }
+    const page = document.querySelector(".page");
 
-  connectedCallback() {
-    super.connectedCallback();
+    if (page) {
+      page.addEventListener("scroll", () => {
+        if (!this.init && this.cards.length > 0) {
+          this.init = true;
+          this.requestUpdate();
+        }
+      });
+    } else {
+      throw new Error("Something went wrong");
+    }
   }
 
   renderMedia(media) {
@@ -63,6 +65,8 @@ export class CardList extends LitElement {
   }
 
   render() {
+    if (!this.init) return;
+
     const columns: [][] = [];
 
     let i = 0;

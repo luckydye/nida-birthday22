@@ -31,8 +31,10 @@
       }
     </style>
   </head>
-  <body loading>
-    <div class="page">
+  <body>
+    <nida-intro></nida-intro>
+
+    <div class="page" loading>
       <header>
         <div class="stage-overlay">
           <img width="100%" src="./images/noise.png" />
@@ -49,53 +51,24 @@
             <nida-chat></nida-chat>
           </div>
         </div>
-
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          width="85.965"
-          height="51.382"
-          viewBox="0 0 85.965 51.382"
-          class="scroll-indicator"
-        >
-          <defs>
-            <filter
-              id="Path_1"
-              x="0"
-              y="0"
-              width="85.965"
-              height="51.382"
-              filterUnits="userSpaceOnUse"
-            >
-              <feOffset dy="2" input="SourceAlpha" />
-              <feGaussianBlur stdDeviation="4" result="blur" />
-              <feFlood flood-opacity="0.161" />
-              <feComposite operator="in" in2="blur" />
-              <feComposite in="SourceGraphic" />
-            </filter>
-          </defs>
-          <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Path_1)">
-            <path
-              id="Path_1-2"
-              data-name="Path 1"
-              d="M2931.512,1003.219l26.781,20.181,26.781-20.181"
-              transform="translate(-2915.31 -989.02)"
-              fill="none"
-              stroke="#615051"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="6"
-            />
-          </g>
-        </svg>
       </header>
+
+      <scroll-indicator></scroll-indicator>
+
       <main>
         <div class="container">
           <nida-cardlist></nida-cardlist>
         </div>
       </main>
+
       <footer>
-        <img src="/images/min_logo.svg" />
+        <a
+          title="made by luckydye :)"
+          href="https://twitter.com/timh4v"
+          target="_blank"
+        >
+          <img src="/images/min_logo.svg" />
+        </a>
       </footer>
     </div>
   </body>
