@@ -25,34 +25,59 @@ function getImageId(link) {
   return params.get("id");
 }
 
-async function fetchImage(url) {
+async function fetchMedia(url) {
   if (!url) return null;
-  const imageId = getImageId(url);
-  const image = await fetch(`https://lh3.googleusercontent.com/d/${imageId}`);
-  const type = image.headers.get("content-type").split("/");
-  const file = `${imageId}.${type[1]}`;
 
-  fs.writeFileSync(
-    `dist/media/${file}`,
-    new Uint8Array(await image.arrayBuffer())
-  );
+  const uri = new URL(url);
 
-  let src = `dist/media/${file}`;
-  if (process.env.NODE_ENV === "production") {
-    src = `media/${file}`;
+  if (uri.host === "drive.google.com") {
+    const imageId = getImageId(url);
+    const image = await fetch(`https://lh3.googleusercontent.com/d/${imageId}`);
+    const type = image.headers.get("content-type").split("/");
+    const file = `${imageId}.${type[1]}`;
+
+    fs.writeFileSync(
+      `dist/media/${file}`,
+      new Uint8Array(await image.arrayBuffer())
+    );
+
+    let src = `dist/media/${file}`;
+    if (process.env.NODE_ENV === "production") {
+      src = `media/${file}`;
+    }
+
+    return {
+      src,
+      type: type.join("/"),
+    };
+  } else {
+    const image = await fetch(url);
+    const type = image.headers.get("content-type").split("/");
+    const name = uri.pathname.split("/").reverse()[0].split(".")[0];
+    const file = `${name}.${type[1]}`;
+
+    fs.writeFileSync(
+      `dist/media/${file}`,
+      new Uint8Array(await image.arrayBuffer())
+    );
+
+    let src = `dist/media/${file}`;
+    if (process.env.NODE_ENV === "production") {
+      src = `media/${file}`;
+    }
+
+    return {
+      src,
+      type: type.join("/"),
+    };
   }
-
-  return {
-    src,
-    type: type.join("/"),
-  };
 }
 
 async function parseCard(record) {
   return {
     date: record[0],
     message: record[1],
-    media: await fetchImage(record[2]),
+    media: await fetchMedia(record[2]),
     name: record[3],
   };
 }

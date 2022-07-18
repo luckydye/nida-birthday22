@@ -37,12 +37,14 @@ export class CardList extends LitElement {
     switch (media.type) {
       case "image/jpeg":
         return html`
-          <aui-lazyimage width="200px" src="${media.src}"></aui-lazyimage>
+          <aui-lazyimage width="100%" src="${media.src}"></aui-lazyimage>
         `;
       case "image/png":
         return html`
-          <aui-lazyimage width="200px" src="${media.src}"></aui-lazyimage>
+          <aui-lazyimage width="100%" src="${media.src}"></aui-lazyimage>
         `;
+      case "video/webm":
+        return html`<video width="100%" controls src="${media.src}"></video>`;
     }
   }
 
