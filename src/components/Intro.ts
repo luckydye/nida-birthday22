@@ -90,17 +90,25 @@ export class NidaIntro extends LitElement {
 
     this.tabIndex = 0;
 
-    this.addEventListener("keydown", (e) => {
-      if (e.code === "Space") {
-        this.next();
-      }
-    });
+    window.addEventListener("keydown", this.onKeyDown.bind(this));
 
     this.addEventListener("click", () => {
       this.next();
     });
 
     this.next();
+  }
+
+  disconnectedCallback(): void {
+    super.disconnectedCallback();
+
+    window.removeEventListener("keydown", this.onKeyDown.bind(this));
+  }
+
+  onKeyDown(e) {
+    if (e.code === "Space") {
+      this.next();
+    }
   }
 
   next() {
