@@ -71,7 +71,7 @@ export class CardList extends LitElement {
 
     let i = 0;
     for (let card of this.cards) {
-      const column = Math.floor(i / 4);
+      const column = Math.round(i / 2);
       columns[column] = columns[column] || [];
       columns[column].push(card);
       i++;

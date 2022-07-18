@@ -1,5 +1,5 @@
 export const messages = [
   "Hey Nida :)",
-  "bla bla",
+  "test",
   "blub blub blub blub blub blub blub blub blub blub ",
 ];

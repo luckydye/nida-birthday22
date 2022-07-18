@@ -36,7 +36,7 @@ export class NidaMessage extends LitElement {
     `;
   }
 
-  content: Array<string | TemplateResult> = [];
+  content: Array<string> = "";
 
   onContentChange() {
     const text = [...this.childNodes].find((node) => node.nodeName === "#text");
@@ -49,17 +49,17 @@ export class NidaMessage extends LitElement {
       if (word in wordReplaceMap) {
         content.push(wordReplaceMap[word]);
       } else {
-        content.push(word + " ");
+        content.push(word);
       }
     }
 
-    this.content = content;
+    this.content = content.join(" ");
     this.requestUpdate();
   }
 
   render() {
     return html`
-      <p class="message">${this.content}</p>
+      <p class="message">${unsafeHTML(this.content)}</p>
       <slot @slotchange="${this.onContentChange}"></slot>
     `;
   }
