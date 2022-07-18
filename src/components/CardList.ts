@@ -1,5 +1,6 @@
-import { css, html, LitElement } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { ImageShow } from "./ImageShow";
+import { render, html, LitElement } from "lit";
+import { customElement } from "lit/decorators.js";
 import "@atrium-ui/lazyimage";
 
 @customElement("nida-cardlist")
@@ -48,6 +49,32 @@ export class CardList extends LitElement {
     }
   }
 
+  // onCardClick(e, card) {
+  //   const blackbox = new ImageShow(e.target);
+
+  //   const note = document.createElement("div");
+  //   note.className = "detail-card";
+  //   render(
+  //     html`
+  //       <div class="message">
+  //         <nida-message>${card.message}</nida-message>
+  //       </div>
+
+  //       ${card.media
+  //         ? html` <div class="media">${this.renderMedia(card.media)}</div> `
+  //         : ""}
+
+  //       <div class="name">
+  //         <span>${card.name}</span>
+  //       </div>
+  //     `,
+  //     note
+  //   );
+  //   blackbox.append(note);
+
+  //   document.body.appendChild(blackbox);
+  // }
+
   renderCard(card) {
     return html`
       <nida-card>
@@ -73,7 +100,7 @@ export class CardList extends LitElement {
 
     let i = 0;
     for (let card of this.cards) {
-      const column = Math.round(i / 2);
+      const column = i % 3;
       columns[column] = columns[column] || [];
       columns[column].push(card);
       i++;

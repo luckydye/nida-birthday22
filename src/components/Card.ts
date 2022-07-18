@@ -26,12 +26,17 @@ export class Card extends LitElement {
         transform-origin: 50% 20px;
         opacity: 0;
         transition: opacity 0.5s ease 0s,
+          box-shadow 0.5s cubic-bezier(0.26, 0.3, 0, 0.98) 0s,
           transform 0.5s cubic-bezier(0.26, 0.3, 0, 0.98) 0s;
         transform: translate(0, 60px);
       }
       :host([shown]) {
         opacity: 1;
         transform: rotate(var(--rot, 2deg)) translate(0, 0px);
+      }
+      :host(:hover) {
+        transform: rotate(var(--rot, 2deg)) translate(0, 0px) scale(1.0069);
+        box-shadow: #00000005 2px 4px 24px;
       }
       .wrapper {
         padding: 30px 20px;
