@@ -32,6 +32,7 @@ export class NidaMessage extends LitElement {
         width: 0;
         height: 0;
         opacity: 0;
+        pointer-events: none;
       }
     `;
   }

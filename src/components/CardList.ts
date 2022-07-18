@@ -35,6 +35,16 @@ export class CardList extends LitElement {
   }
 
   renderMedia(media) {
+    // <iframe src="https://drive.google.com/file/d/1T9wR-W2r6-NXxkx9IC8EJSn_KRH6l91d/preview" width="640" height="480" allow="autoplay"></iframe>
+
+    return html`<iframe
+      src="${media.embed}"
+      width="100%"
+      height="280px"
+      style="border: none;"
+      allow="autoplay"
+    ></iframe>`;
+
     switch (media.type) {
       case "image/jpeg":
         return html`
@@ -46,34 +56,10 @@ export class CardList extends LitElement {
         `;
       case "video/webm":
         return html`<video width="100%" controls src="${media.src}"></video>`;
+      case "video/mp4":
+        return html`<video width="100%" controls src="${media.src}"></video>`;
     }
   }
-
-  // onCardClick(e, card) {
-  //   const blackbox = new ImageShow(e.target);
-
-  //   const note = document.createElement("div");
-  //   note.className = "detail-card";
-  //   render(
-  //     html`
-  //       <div class="message">
-  //         <nida-message>${card.message}</nida-message>
-  //       </div>
-
-  //       ${card.media
-  //         ? html` <div class="media">${this.renderMedia(card.media)}</div> `
-  //         : ""}
-
-  //       <div class="name">
-  //         <span>${card.name}</span>
-  //       </div>
-  //     `,
-  //     note
-  //   );
-  //   blackbox.append(note);
-
-  //   document.body.appendChild(blackbox);
-  // }
 
   renderCard(card) {
     return html`

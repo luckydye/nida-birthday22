@@ -49,6 +49,7 @@ async function fetchMedia(url) {
     return {
       src,
       type: type.join("/"),
+      embed: `https://drive.google.com/file/d/${imageId}/preview`,
     };
   } else {
     const image = await fetch(url);
