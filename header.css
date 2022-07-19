@@ -1,0 +1,46 @@
+header {
+  user-select: none;
+  padding: 0;
+  position: relative;
+  margin: 40px 40px 0 40px;
+  z-index: 0;
+  margin-bottom: -40px;
+  border-radius: 12px;
+  overflow: hidden;
+  filter: contrast(1.1);
+}
+.stage-background {
+  background: #e2e5e1;
+}
+.stage-background img {
+  display: block;
+}
+.stage-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.1;
+  z-index: 100;
+  pointer-events: none;
+}
+.stage-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.stage-caption {
+  padding: 3% 100px;
+  margin: auto;
+  max-width: 1200px;
+  background: url(./images/decoration_1.png) no-repeat;
+  background-position: -20px 30px;
+}
+.stage-caption h1 {
+  color: #fff;
+  font-weight: normal;
+  font-family: "Lato", sans-serif;
+  font-size: 5vw;
+  max-width: 669px;
+}

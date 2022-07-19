@@ -1,0 +1,48 @@
+.grid {
+  display: grid;
+  grid-gap: 40px;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+@media (max-width: 940px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 740px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+nida-card {
+  display: block;
+  font-size: 1rem;
+  font-family: sans-serif;
+  margin-bottom: 40px;
+}
+nida-card .message {
+  margin-bottom: 20px;
+  line-height: 130%;
+}
+nida-card .media {
+  margin-left: -20px;
+  margin-right: -20px;
+}
+nida-card .name {
+  text-align: right;
+  margin-top: 20px;
+  font-size: 0.9rem;
+}
+
+aui-lazyimage {
+  display: block;
+}
+
+.detail-card {
+  padding: 30px 20px;
+  border-radius: 6px;
+  box-shadow: #0000000a 2px 4px 12px;
+  overflow: hidden;
+  background: white;
+  max-width: 900px;
+}
