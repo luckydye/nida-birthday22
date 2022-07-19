@@ -35,29 +35,27 @@ export class CardList extends LitElement {
   }
 
   renderMedia(media) {
-    // <iframe src="https://drive.google.com/file/d/1T9wR-W2r6-NXxkx9IC8EJSn_KRH6l91d/preview" width="640" height="480" allow="autoplay"></iframe>
-
-    return html`<iframe
-      src="${media.embed}"
-      width="100%"
-      height="280px"
-      style="border: none;"
-      allow="autoplay"
-    ></iframe>`;
-
     switch (media.type) {
-      case "image/jpeg":
-        return html`
-          <aui-lazyimage width="100%" src="${media.src}"></aui-lazyimage>
-        `;
-      case "image/png":
-        return html`
-          <aui-lazyimage width="100%" src="${media.src}"></aui-lazyimage>
-        `;
-      case "video/webm":
-        return html`<video width="100%" controls src="${media.src}"></video>`;
-      case "video/mp4":
-        return html`<video width="100%" controls src="${media.src}"></video>`;
+      // case "image/jpeg":
+      //   return html`
+      //     <aui-lazyimage width="100%" src="${media.src}"></aui-lazyimage>
+      //   `;
+      // case "image/png":
+      //   return html`
+      //     <aui-lazyimage width="100%" src="${media.src}"></aui-lazyimage>
+      //   `;
+      default:
+        if (media.embed) {
+          return html`<iframe
+            src="${media.embed}"
+            width="100%"
+            height="280px"
+            style="border: none;"
+            allow="autoplay"
+          ></iframe>`;
+        } else {
+          return html`Media not suppoerted. ${media.type}`;
+        }
     }
   }
 

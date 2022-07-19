@@ -73,11 +73,8 @@ export class NidaIntro extends LitElement {
   constructor() {
     super();
 
-    const isFinished = localStorage.getItem("into-finished");
-    if (isFinished && isFinished === "true") {
-      if (location.hash !== "#intro") {
-        this.onEnded();
-      }
+    if (location.hash !== "#intro") {
+      this.onEnded();
     }
   }
 
@@ -123,6 +120,7 @@ export class NidaIntro extends LitElement {
   }
 
   onEnded() {
+    location.hash = "";
     localStorage.setItem("into-finished", "true");
     actions.showPage();
     this.remove();
