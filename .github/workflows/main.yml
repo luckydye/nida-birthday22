@@ -15,6 +15,10 @@ jobs:
 
       - name: Install and Build 🔧
         run: |
+          sudo apt update && sudo apt upgrade
+          curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+          sudo apt-get install nodejs
+          node -v
           npm ci
           npm run build
       - name: Deploy 🚀
