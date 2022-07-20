@@ -47,6 +47,7 @@ export class NidaMessage extends LitElement {
     const content: string[] = [];
 
     for (let word of words) {
+      word = word.replace(/:/g, "");
       if (word in wordReplaceMap) {
         content.push(wordReplaceMap[word]);
       } else {
