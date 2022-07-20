@@ -52,16 +52,13 @@ export const wordReplaceMap: Record<string, string> = {
   nidali1Swog: `<img
     src="//static-cdn.jtvnw.net/emoticons/v2/emotesv2_643649db5cfe49e38344033b8fb6518f/default/dark/2.0"
   />`,
+  yasBih: `<img
+    src="https://cdn.betterttv.net/emote/6167425a054a252a431ef190/2x"
+  />`,
 
   // exceptions
   nidaClown: `<img
     src="//static-cdn.jtvnw.net/emoticons/v2/emotesv2_4adcf9a1f7ef43afb59243f26fde7845/default/dark/2.0"
-  />`,
-  yasBih: `<img
-    src="https://cdn.betterttv.net/emote/6167425a054a252a431ef190/2x"
-  />`,
-  ":yasBih": `<img
-    src="https://cdn.betterttv.net/emote/6167425a054a252a431ef190/2x"
   />`,
   NidaHeart: `<img
     src="//static-cdn.jtvnw.net/emoticons/v2/emotesv2_bcc47849ebd94260b11402758d239de9/default/dark/2.0"
