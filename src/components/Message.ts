@@ -49,7 +49,7 @@ export class NidaMessage extends LitElement {
     for (let word of words) {
       word = word.replace(/:/g, "");
       if (word in wordReplaceMap) {
-        content.push(wordReplaceMap[word]);
+        content.push(`<img src="${wordReplaceMap[word]}" alt="${word}" />`);
       } else {
         content.push(word);
       }

@@ -7,10 +7,17 @@ async function fetchCSV() {
   console.log("[SSG] fetching from " + sheet);
 
   const csvURL = `https://docs.google.com/spreadsheets/d/${dbID}/gviz/tq?tqx=out:csv&sheet=${sheet}`;
-  const data = await fetch(csvURL).then((res) => {
-    if (res.status !== 200) throw new Error("Failed to fetch data");
-    return res.text();
-  });
+  const data = await fetch(csvURL, {
+    method: "GET",
+  })
+    .then((res) => {
+      if (res.status !== 200) throw new Error("Failed to fetch data");
+      return res.text();
+    })
+    .catch((err) => {
+      console.log(csvURL);
+      console.error(err);
+    });
   fs.writeFileSync(`dist/data.csv`, data);
 }
 
@@ -32,7 +39,11 @@ async function fetchMedia(url) {
 
   if (uri.host === "drive.google.com") {
     const imageId = getImageId(url);
-    const image = await fetch(`https://lh3.googleusercontent.com/d/${imageId}`);
+    const imageurl = `https://lh3.googleusercontent.com/d/${imageId}`;
+    const image = await fetch(imageurl).catch((err) => {
+      console.log(imageurl);
+      console.error(err);
+    });
     const type = image.headers.get("content-type").split("/");
     const file = `${imageId}.${type[1]}`;
 
@@ -52,7 +63,10 @@ async function fetchMedia(url) {
       embed: `https://drive.google.com/file/d/${imageId}/preview`,
     };
   } else {
-    const image = await fetch(url);
+    const image = await fetch(url).catch((err) => {
+      console.log(url);
+      console.error(err);
+    });
     const type = image.headers.get("content-type").split("/");
     const name = uri.pathname.split("/").reverse()[0].split(".")[0];
     const file = `${name}.${type[1]}`;
