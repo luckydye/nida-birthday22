@@ -98,57 +98,62 @@ async function parseCard(record) {
 }
 
 export async function fetchPage() {
-  console.log("[SSG] Fetching content for page '/'");
+  return new Promise(async (resolve) => {
+    console.log("[SSG] Fetching content for page '/'");
 
-  if (!fs.existsSync("dist")) {
-    fs.mkdirSync("dist");
-  }
-  if (!fs.existsSync("dist/media")) {
-    fs.mkdirSync("dist/media");
-  }
-
-  await fetchCSV();
-
-  const csv = fs.readFileSync("dist/data.csv");
-  const csvString = csv.toString();
-
-  const records = [];
-  const parser = parse({
-    delimiter: ",",
-  });
-
-  let index = 0;
-  parser.on("readable", function () {
-    let record;
-    while ((record = parser.read()) !== null) {
-      if (index > 0) {
-        records.push(record);
-      }
-      index++;
+    if (!fs.existsSync("dist")) {
+      fs.mkdirSync("dist");
     }
-  });
-  parser.on("error", function (err) {
-    console.error(err.message);
-  });
+    if (!fs.existsSync("dist/media")) {
+      fs.mkdirSync("dist/media");
+    }
 
-  parser.write(csvString);
-  parser.end();
+    await fetchCSV();
 
-  const totalCards = records.length;
-  let progress = 0;
+    const csv = fs.readFileSync("dist/data.csv");
+    const csvString = csv.toString();
 
-  await Promise.all(
-    records.map((rec) =>
-      parseCard(rec).then((card) => {
-        progress++;
-        console.log(`[SSG] fetched data ${progress}/${totalCards}`);
-        return card;
-      })
-    )
-  ).then((cards) => {
-    const data = {
-      cards,
-    };
-    fs.writeFileSync("dist/cards.json", JSON.stringify(data, null, "\t"));
+    const records = [];
+    const parser = parse({
+      delimiter: ",",
+    });
+
+    let index = 0;
+    parser.on("readable", async function () {
+      let record;
+      while ((record = parser.read()) !== null) {
+        if (index > 0) {
+          records.push(record);
+        }
+        index++;
+      }
+
+      const totalCards = records.length;
+      let progress = 0;
+
+      await Promise.all(
+        records.map((rec) =>
+          parseCard(rec).then((card) => {
+            progress++;
+            console.log(`[SSG] fetched data ${progress}/${totalCards}`);
+            return card;
+          })
+        )
+      ).then((cards) => {
+        const data = {
+          cards,
+        };
+        fs.writeFileSync("dist/cards.json", JSON.stringify(data, null, "\t"));
+      });
+
+      resolve(1);
+    });
+
+    parser.on("error", function (err) {
+      console.error(err.message);
+    });
+
+    parser.write(csvString);
+    parser.end();
   });
 }
