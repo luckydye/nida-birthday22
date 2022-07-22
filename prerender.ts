@@ -39,6 +39,8 @@ async function fetchMedia(url) {
 
   if (uri.host === "drive.google.com") {
     const imageId = getImageId(url);
+    // for videos:
+    // https://drive.google.com/uc?export=download&id=1T9wR-W2r6-NXxkx9IC8EJSn_KRH6l91d
     const imageurl = `https://lh3.googleusercontent.com/d/${imageId}`;
     const image = await fetch(imageurl).catch((err) => {
       console.log(imageurl);
