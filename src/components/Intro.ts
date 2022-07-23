@@ -15,7 +15,7 @@ export class NidaIntro extends LitElement {
         width: 100%;
         height: 100%;
         z-index: 1000;
-        background: inherit;
+        color: #333;
         filter: contrast(1.1);
       }
       .overlay {
@@ -27,19 +27,18 @@ export class NidaIntro extends LitElement {
       }
       .container {
         position: absolute;
-        top: 20%;
+        top: 30%;
         left: 50%;
         transform: translateX(-50%);
         width: 900px;
         margin: auto;
-        padding: 40px;
       }
       .info-message {
         position: absolute;
         left: 50%;
-        bottom: 20%;
+        bottom: 30%;
         transform: translateX(-50%);
-        color: #333;
+        color: inherit;
         animation: attention 3s ease infinite both;
       }
       @keyframes attention {
@@ -62,7 +61,7 @@ export class NidaIntro extends LitElement {
       .title {
         font-size: 48px;
         font-weight: bold;
-        color: #333;
+        color: inherit;
       }
       strong {
         font-weight: bold;
@@ -89,9 +88,9 @@ export class NidaIntro extends LitElement {
 
     window.addEventListener("keydown", this.onKeyDown.bind(this));
 
-    this.addEventListener("click", () => {
-      this.next();
-    });
+    // this.addEventListener("click", () => {
+    //   this.next();
+    // });
 
     this.next();
   }
