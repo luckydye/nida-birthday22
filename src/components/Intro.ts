@@ -130,13 +130,14 @@ export class NidaIntro extends LitElement {
     video.className = "intro-video";
 
     video.oncanplay = () => {
-      document.body.append(video);
       video.play();
     };
 
     video.onanimationend = () => {
       video.remove();
     };
+
+    document.body.append(video);
 
     setTimeout(() => {
       localStorage.setItem("into-finished", "true");
