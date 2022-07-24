@@ -54,7 +54,7 @@ export class NidaMessage extends LitElement {
     const text = [...this.childNodes].find((node) => node.nodeName === "#text");
     const data = text?.data;
 
-    const words = data.split(" ");
+    const words = data.replaceAll("\n", " \n").split(" ");
     const content: string[] = [];
 
     for (let word of words) {

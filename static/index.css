@@ -100,6 +100,7 @@ footer {
   animation: fade-in-out 4s ease-out both;
   z-index: 100000;
   pointer-events: none;
+  background: #eaeeeb;
 }
 
 @keyframes fade-in-out {
