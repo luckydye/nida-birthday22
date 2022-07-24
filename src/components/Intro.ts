@@ -73,7 +73,10 @@ export class NidaIntro extends LitElement {
     super();
 
     if (location.hash !== "#intro") {
-      this.onEnded();
+      location.hash = "";
+      localStorage.setItem("into-finished", "true");
+      actions.showPage();
+      this.remove();
     }
   }
 
@@ -120,9 +123,26 @@ export class NidaIntro extends LitElement {
 
   onEnded() {
     location.hash = "";
-    localStorage.setItem("into-finished", "true");
-    actions.showPage();
-    this.remove();
+
+    const video = document.createElement("video");
+    video.src = "./nida-bday-king.mp4";
+    video.muted = true;
+    video.className = "intro-video";
+
+    video.oncanplay = () => {
+      document.body.append(video);
+      video.play();
+    };
+
+    video.onanimationend = () => {
+      video.remove();
+    };
+
+    setTimeout(() => {
+      localStorage.setItem("into-finished", "true");
+      actions.showPage();
+      this.remove();
+    }, 3000);
   }
 
   render() {
